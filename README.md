@@ -1,14 +1,14 @@
 # zlib.mojo
 
-> Part of [**millrace**](https://millrace.me) — local-first tooling in Mojo.
+> Part of [**millfolio**](https://millfolio.app) — local-first tooling in Mojo.
 
 A thin Mojo binding to **zlib** — one-shot `inflate` / `deflate` — built the same
-way [flare](https://github.com/millrace/flare) wraps zlib/OpenSSL: a small C shim
+way [flare](https://github.com/millfolio/flare) wraps zlib/OpenSSL: a small C shim
 (`ffi/zlib_wrapper.c`) compiled to **`libzlibmojo.so`** and loaded through an
 `OwnedDLHandle`. No per-consumer link flags; the shim is `dlopen`ed at runtime.
 
 The headline use is **PDF `/FlateDecode`** (see
-[pdftotext.mojo](https://github.com/millrace/pdftotext.mojo)): FlateDecode
+[pdftotext.mojo](https://github.com/millfolio/pdftotext.mojo)): FlateDecode
 streams are RFC-1950 zlib data, exactly what `inflate` decompresses (it also
 falls back to raw deflate).
 
@@ -31,7 +31,7 @@ mojo build your.mojo -I ../zlib.mojo/src -o your-bin    # no link flags needed
 `_find_lib()` resolves the shim at `$CONDA_PREFIX/lib/libzlibmojo.so` (or
 `build/` for a bare checkout). For distribution, bundle `libzlibmojo.so`
 alongside the binary and relocate it with `@loader_path`, exactly like flare's
-shims (see millrace/app's `package_headgate.sh`).
+shims (see millfolio/app's `package_headgate.sh`).
 
 > **Why a C shim, not `external_call` to libz directly?** Two reasons, both from
 > flare: (1) a single-call API means Mojo never reads back `z_stream` fields after
@@ -53,4 +53,4 @@ pixi run test     # builds the shim, then deflate -> inflate -> original, byte-f
   API (`inflateInit`/`inflate`/`inflateEnd`) can come later.
 - `inflate` auto-detects zlib vs raw deflate and grows the output buffer on
   overflow (PDF stream dicts don't reliably carry the decompressed size).
-- macOS / Apple Silicon (`osx-arm64`), Mojo nightly `1.0.0b2.dev2026060706`.
+- macOS / Apple Silicon (`osx-arm64`), Mojo nightly `1.0.0b3.dev2026061206`.
