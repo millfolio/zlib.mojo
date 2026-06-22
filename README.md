@@ -53,4 +53,4 @@ pixi run test     # builds the shim, then deflate -> inflate -> original, byte-f
   API (`inflateInit`/`inflate`/`inflateEnd`) can come later.
 - `inflate` auto-detects zlib vs raw deflate and grows the output buffer on
   overflow (PDF stream dicts don't reliably carry the decompressed size).
-- macOS / Apple Silicon (`osx-arm64`), Mojo nightly `1.0.0b3.dev2026061206`.
+- macOS / Apple Silicon (`osx-arm64`), Mojo nightly `1.0.0b3.dev2026062206`.
