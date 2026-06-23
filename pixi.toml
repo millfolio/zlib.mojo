@@ -20,4 +20,4 @@ zlib = ">=1.3.1,<2"
 ffi = "bash src/ffi/build.sh"
 # Round-trip gate: deflate -> inflate -> original. The shim is dlopened at
 # runtime, so consumers just `-I ../zlib.mojo/src` + the built shim (no link flags).
-test = { cmd = "mkdir -p build && mojo build src/zlib_test.mojo -I src -o build/zlib-test && ./build/zlib-test", depends-on = ["ffi"] }
+test = { cmd = "mkdir -p build && mojo build test/zlib_test.mojo -I src -o build/zlib-test && ./build/zlib-test", depends-on = ["ffi"] }
