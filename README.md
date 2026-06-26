@@ -1,5 +1,7 @@
 # zlib.mojo
 
+> 💬 **Community:** questions, ideas, and show-and-tell live in [GitHub Discussions](https://github.com/millfolio/millfolio/discussions).
+
 > Part of [**millfolio**](https://millfolio.app) — local-first tooling in Mojo.
 
 A thin Mojo binding to **zlib** — one-shot `inflate` / `deflate` — built the same
