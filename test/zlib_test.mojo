@@ -22,11 +22,19 @@ def main() raises:
 
     if len(back) != len(src):
         raise Error(
-            "length mismatch: " + String(len(back)) + " != " + String(len(src)))
+            "length mismatch: " + String(len(back)) + " != " + String(len(src))
+        )
     for i in range(len(src)):
         if back[i] != src[i]:
             raise Error("byte mismatch at index " + String(i))
 
     print(
-        "zlib round-trip OK: ", len(src), " bytes -> ", len(comp),
-        " compressed -> ", len(back), " back", sep="")
+        "zlib round-trip OK: ",
+        len(src),
+        " bytes -> ",
+        len(comp),
+        " compressed -> ",
+        len(back),
+        " back",
+        sep="",
+    )

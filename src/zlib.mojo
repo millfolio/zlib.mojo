@@ -26,10 +26,12 @@ def _find_lib() -> String:
     return out^
 
 
-def _do_inflate(read lib: OwnedDLHandle, data: List[UInt8]) raises -> List[UInt8]:
+def _do_inflate(
+    read lib: OwnedDLHandle, data: List[UInt8]
+) raises -> List[UInt8]:
     # `lib` borrowed -> stays mapped across the C call (flare ASAP-destruction fix).
     var inflate_fn = lib.get_function[
-        def (Int, c_int, Int, c_int) thin abi("C") -> c_int
+        def(Int, c_int, Int, c_int) thin abi("C") -> c_int
     ]("zlibm_inflate_auto")
 
     var cap = len(data) * 4
@@ -39,8 +41,10 @@ def _do_inflate(read lib: OwnedDLHandle, data: List[UInt8]) raises -> List[UInt8
         var out = List[UInt8](capacity=cap)
         out.resize(cap, 0)
         var written = inflate_fn(
-            Int(data.unsafe_ptr()), c_int(len(data)),
-            Int(out.unsafe_ptr()), c_int(cap),
+            Int(data.unsafe_ptr()),
+            c_int(len(data)),
+            Int(out.unsafe_ptr()),
+            c_int(cap),
         )
         var w = Int(written)
         if w < 0:
@@ -64,15 +68,18 @@ def _do_deflate(
     read lib: OwnedDLHandle, data: List[UInt8], level: c_int
 ) raises -> List[UInt8]:
     var deflate_fn = lib.get_function[
-        def (Int, c_int, Int, c_int, c_int) thin abi("C") -> c_int
+        def(Int, c_int, Int, c_int, c_int) thin abi("C") -> c_int
     ]("zlibm_deflate")
 
     var cap = len(data) + (len(data) >> 10) + 64  # worst-case zlib overhead
     var out = List[UInt8](capacity=cap)
     out.resize(cap, 0)
     var written = deflate_fn(
-        Int(data.unsafe_ptr()), c_int(len(data)),
-        Int(out.unsafe_ptr()), c_int(cap), level,
+        Int(data.unsafe_ptr()),
+        c_int(len(data)),
+        Int(out.unsafe_ptr()),
+        c_int(cap),
+        level,
     )
     var w = Int(written)
     if w < 0:
