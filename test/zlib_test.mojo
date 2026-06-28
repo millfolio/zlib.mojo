@@ -1,4 +1,4 @@
-"""zlib round-trip gate: deflate(x) then inflate -> x, byte-for-byte."""
+"""Round-trip gate: deflate(x) then inflate -> x, byte-for-byte."""
 
 from zlib import deflate, inflate
 
