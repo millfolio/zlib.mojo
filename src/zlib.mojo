@@ -27,12 +27,10 @@ def _find_lib() -> String:
 
 
 def _do_inflate(
-    read lib: OwnedDLHandle, data: List[UInt8]
+    imm lib: OwnedDLHandle, data: List[UInt8]
 ) raises -> List[UInt8]:
     # `lib` borrowed -> stays mapped across the C call (flare ASAP-destruction fix).
-    var inflate_fn = lib.get_function[
-        def(Int, c_int, Int, c_int) thin abi("C") -> c_int
-    ]("zlibm_inflate_auto")
+    var inflate_fn = lib.get_function[c_int]("zlibm_inflate_auto")
 
     var cap = len(data) * 4
     if cap < 4096:
@@ -65,11 +63,9 @@ def inflate(data: List[UInt8]) raises -> List[UInt8]:
 
 
 def _do_deflate(
-    read lib: OwnedDLHandle, data: List[UInt8], level: c_int
+    imm lib: OwnedDLHandle, data: List[UInt8], level: c_int
 ) raises -> List[UInt8]:
-    var deflate_fn = lib.get_function[
-        def(Int, c_int, Int, c_int, c_int) thin abi("C") -> c_int
-    ]("zlibm_deflate")
+    var deflate_fn = lib.get_function[c_int]("zlibm_deflate")
 
     var cap = len(data) + (len(data) >> 10) + 64  # worst-case zlib overhead
     var out = List[UInt8](capacity=cap)
