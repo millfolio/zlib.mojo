@@ -1,4 +1,4 @@
-"""zlib — Mojo inflate/deflate via a thin C shim (libzlibmojo.so).
+"""`zlib` — Mojo inflate/deflate via a thin C shim (libzlibmojo.so).
 
 Mirrors flare's FFI pattern (flare/http/encoding.mojo): a single-call C wrapper
 (ffi/zlib_wrapper.c, built to $CONDA_PREFIX/lib/libzlibmojo.so by ffi/build.sh)
