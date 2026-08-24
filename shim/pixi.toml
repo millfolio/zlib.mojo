@@ -1,0 +1,10 @@
+[package]
+name = "zlib-shim"
+version = "0.1.1"
+description = "C FFI shim for zlib-mojo: libzlibmojo.so, dlopened at runtime"
+
+[package.build]
+backend = { name = "pixi-build-cmake", version = "*" }
+
+[package.host-dependencies]
+zlib = "*"
