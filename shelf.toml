@@ -2,5 +2,5 @@ name = "zlib-mojo"
 version = "0.1.1"
 description = "A Mojo zlib binding (inflate/deflate) via FFI to libz"
 tags = ["compression", "zlib", "ffi"]
-# other books this one depends on; omit if none
-books = []
+# other tins this one depends on; omit if none
+tins = []
