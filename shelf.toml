@@ -1,5 +1,5 @@
 name = "zlib-mojo"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Mojo zlib binding (inflate/deflate) via FFI to libz"
 tags = ["compression", "zlib", "ffi"]
 # other tins this one depends on; omit if none

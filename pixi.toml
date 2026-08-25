@@ -1,6 +1,6 @@
 [workspace]
 name = "zlib"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Marius S <marius@seritan.net>"]
 description = "A Mojo zlib binding (inflate/deflate) via FFI to libz. Used for PDF FlateDecode (pdftotext.mojo) and general decompression."
 preview = ["pixi-build"]
@@ -10,7 +10,7 @@ channels = [
     "https://conda.modular.com/max-nightly",
     "conda-forge",
 ]
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
 
 [dependencies]
 mojo = "==1.0.0"
@@ -29,7 +29,7 @@ test = { cmd = "mkdir -p build && mojo build test/zlib_test.mojo -I src -o build
 # stays `from zlib import …`.
 [package]
 name = "zlib-mojo"
-version = "0.1.1"
+version = "0.1.2"
 
 [package.build]
 backend = { name = "pixi-build-mojo", version = "0.*" }
