@@ -1,5 +1,7 @@
 # zlib.mojo
 
+[![mojoshelf](https://mojoshelf.org/badge/zlib-mojo.svg)](https://mojoshelf.org/tins/zlib-mojo) [![mojo nightly](https://mojoshelf.org/badge/zlib-mojo/nightly.svg)](https://mojoshelf.org/tins/zlib-mojo)
+
 > 💬 **Community:** questions, ideas, and show-and-tell live in [GitHub Discussions](https://github.com/millfolio/millfolio/discussions).
 
 > Part of [**millfolio**](https://millfolio.app) — local-first tooling in Mojo.
@@ -42,6 +44,18 @@ shims (see millfolio/app's `package_headgate.sh`).
 > the `dlopen` shim is self-contained instead. The one gotcha: the `OwnedDLHandle`
 > is passed as a **borrowed** `read` param to the worker, or Mojo's ASAP
 > destruction `dlclose`s it before the call runs.
+
+## Install as a mojoshelf tin
+
+Published on [mojoshelf](https://mojoshelf.org/tins/zlib-mojo) as `zlib-mojo`:
+
+```sh
+pixi shelf add zlib-mojo     # pixi mode (builds the C shim + .mojopkg)
+shelf add zlib-mojo          # or as a git submodule
+```
+
+Maintainers release new versions with `shelf publish` from the repo root
+(see [getting started](https://mojoshelf.org/getting-started)).
 
 ## Test
 
